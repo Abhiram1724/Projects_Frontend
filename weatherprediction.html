@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+</head>
+<style>
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('https://images.pexels.com/photos/414659/pexels-photo-414659.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.weather-container {
+  background: linear-gradient(to left, #74ebd5, #acb6e5);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005f73;
+}
+
+#weather-result {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+</style>
+
+<body>
+  <div class="weather-container">
+    <h1>Weather Prediction</h1>
+    <input type="text" id="city" placeholder="Enter city name" />
+    <button onclick="getWeather()">Get Weather</button>
+    <div id="weather-result"></div>
+  </div>
+
+  <script>
+
+    async function getWeather() {
+  const city = document.getElementById("city").value;
+  const apiKey = "2f10f61e7d697ef632590817becbeb5e";
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  const resultDiv = document.getElementById("weather-result");
+  resultDiv.innerHTML = "Loading...";
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("City not found");
+    const data = await response.json();
+    resultDiv.innerHTML = `
+      <p><strong>${data.name}, ${data.sys.country}</strong></p>
+      <p>Temperature: ${data.main.temp}°C</p>
+      <p>Weather: ${data.weather[0].main}</p>
+      <p>Humidity: ${data.main.humidity}%</p>
+    `;
+  } catch (error) {
+    resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+  }
+}
+
+  </script>
+</body>
+</html>
