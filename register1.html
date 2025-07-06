@@ -1,0 +1,78 @@
+<doctype html>
+    <html>
+    <head>
+    <title> REGISTER PAGE </title>
+    </head>
+    <style>
+        .body{
+            background-color: rgb(153, 153, 51);
+        }
+        label{
+            font-size: 30px;
+
+        }
+        input[type="text"] {
+      font-size: 18px;
+      padding: 10px;
+      width: 250px;
+        }
+        input[type="password"] {
+      font-size: 18px;
+      padding: 10px;
+      width: 250px;
+        }
+        button{
+            font-size: 30px;
+            color: black;
+            background-color: rgb(238, 12, 12);
+
+        }
+        .container {
+            background: linear-gradient(to left, #d17388, #acb6e5);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 50px auto;
+}
+#success-message {
+      font-size: 24px;
+      color: green;
+      margin-bottom: 20px;
+      display: none;
+}
+    </style>
+    
+    <body>
+    <form class="container" onsubmit="handleSubmit(event)">
+          <div id="success-message">Registration Successful!</div>
+    <h1>REGISTER</h1>
+    <label for="name">USERNAME</label><br>
+    <input type="text"  name="name" placeholder="enter user name"><br>
+    <label for="name">FIRST NAME</label><br>
+    <input type="text" name="name" placeholder="enter your first name"><br>
+    <label for="name">LAST NAME</label><br>
+    <input type="text" name="name" placeholder="enter your last name"><br>
+    <label for="number">NUMBER</label><br>
+    <input type="text" name="number" placeholder="enter phone number"><br>
+    <label for="password">PASSWORD</label><br>
+    <input type="password" name="pwd" placeholder="enter password">
+    <br><br><br>
+    <button type="submit">REGISTER</button>
+
+    <script>
+        
+    function handleSubmit(event) {
+      event.preventDefault(); 
+
+      const msg = document.getElementById('success-message');
+      msg.style.display = 'block';
+
+      setTimeout(function () {
+        window.location.href = 'login1.html';
+      }, 1000);
+    }
+  </script>
+    
+    </form></body></html>
